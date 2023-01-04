@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-// import { NgxDropzoneModule } from 'ngx-dropzone';
-import { NgxDropzoneModule } from 'projects/ngx-dropzone/src/public_api';
+import { AppRoutingModule } from './app-routing.module';
+
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { NgxDropzoneModule } from 'projects/ngx-dropzone/src/public_api';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     NgxDropzoneModule
   ],
   providers: [],

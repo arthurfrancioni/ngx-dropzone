@@ -8,24 +8,24 @@ import { NgxDropzoneRemoveBadgeComponent } from './ngx-dropzone-preview/ngx-drop
 import { NgxDropzoneVideoPreviewComponent } from './ngx-dropzone-preview/ngx-dropzone-video-preview/ngx-dropzone-video-preview.component';
 
 @NgModule({
-	imports: [
-		CommonModule
-	],
-	declarations: [
-		NgxDropzoneComponent,
-		NgxDropzoneLabelDirective,
-		NgxDropzonePreviewComponent,
-		NgxDropzoneImagePreviewComponent,
-		NgxDropzoneRemoveBadgeComponent,
-		NgxDropzoneVideoPreviewComponent,
-	],
-	exports: [
-		NgxDropzoneComponent,
-		NgxDropzoneLabelDirective,
-		NgxDropzonePreviewComponent,
-		NgxDropzoneImagePreviewComponent,
-		NgxDropzoneRemoveBadgeComponent,
-		NgxDropzoneVideoPreviewComponent,
-	]
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+    NgxDropzoneComponent,
+    NgxDropzoneLabelDirective,
+    NgxDropzonePreviewComponent,
+    NgxDropzoneImagePreviewComponent,
+    NgxDropzoneRemoveBadgeComponent,
+    NgxDropzoneVideoPreviewComponent,
+  ],
+  exports: [
+    NgxDropzoneComponent,
+    NgxDropzoneLabelDirective,
+    NgxDropzonePreviewComponent,
+    NgxDropzoneImagePreviewComponent,
+    NgxDropzoneRemoveBadgeComponent,
+    NgxDropzoneVideoPreviewComponent,
+  ]
 })
 export class NgxDropzoneModule { }

@@ -23,14 +23,15 @@ export class NgxDropzoneComponent {
 
   /** A list of the content-projected preview children. */
   @ContentChildren(NgxDropzonePreviewComponent, { descendants: true })
-  _previewChildren: QueryList<NgxDropzonePreviewComponent>;
+  _previewChildren!: QueryList<NgxDropzonePreviewComponent>;
 
   get _hasPreviews(): boolean {
     return !!this._previewChildren.length;
   }
 
   /** A template reference to the native file input element. */
-  @ViewChild('fileInput', { static: true }) _fileInput: ElementRef;
+  @ViewChild('fileInput', { static: true })
+  _fileInput!: ElementRef;
 
   /** Emitted when any files were added or rejected. */
   @Output() readonly change = new EventEmitter<NgxDropzoneChangeEvent>();
@@ -71,7 +72,7 @@ export class NgxDropzoneComponent {
   set maxFileSize(value: number) {
     this._maxFileSize = coerceNumberProperty(value);
   }
-  private _maxFileSize: number = undefined;
+  private _maxFileSize = 2562787;
 
   /** Allow the dropzone container to expand vertically. */
   @Input()
@@ -82,7 +83,7 @@ export class NgxDropzoneComponent {
   set expandable(value: boolean) {
     this._expandable = coerceBooleanProperty(value);
   }
-  private _expandable: boolean = false;
+  private _expandable = false;
 
   /** Open the file selector on click. */
   @Input()
@@ -106,10 +107,14 @@ export class NgxDropzoneComponent {
   private _processDirectoryDrop = false;
 
   /** Expose the id, aria-label, aria-labelledby and aria-describedby of the native file input for proper accessibility. */
-  @Input() id: string;
-  @Input('aria-label') ariaLabel: string;
-  @Input('aria-labelledby') ariaLabelledby: string;
-  @Input('aria-describedby') ariaDescribedBy: string;
+  @Input()
+  id!: string;
+  @Input('aria-label')
+  ariaLabel!: string;
+  @Input('aria-labelledby')
+  ariaLabelledby!: string;
+  @Input('aria-describedby')
+  ariaDescribedBy!: string;
 
   @HostBinding('class.ngx-dz-hovered')
   _isHovered = false;
@@ -123,7 +128,7 @@ export class NgxDropzoneComponent {
   }
 
   @HostListener('dragover', ['$event'])
-  _onDragOver(event) {
+  _onDragOver(event: any) {
     if (this.disabled) {
       return;
     }
@@ -138,7 +143,7 @@ export class NgxDropzoneComponent {
   }
 
   @HostListener('drop', ['$event'])
-  _onDrop(event) {
+  _onDrop(event: any) {
     if (this.disabled) {
       return;
     }
@@ -152,7 +157,8 @@ export class NgxDropzoneComponent {
 
     // if processDirectoryDrop is enabled and webkitGetAsEntry is supported we can extract files from a dropped directory
     } else {
-      const droppedItems: DataTransferItem[] = event.dataTransfer.items;
+      // const droppedItems: DataTransferItem[] = event.dataTransfer.items;
+      const droppedItems: any[] = event.dataTransfer.items;
 
       if (droppedItems.length > 0) {
         const droppedFiles: File[] = [];
@@ -200,27 +206,27 @@ export class NgxDropzoneComponent {
     }
   }
 
-  private extractFilesFromDirectory(directory) {
-    async function getFileFromFileEntry(fileEntry) {
+  private extractFilesFromDirectory(directory: any) {
+    async function getFileFromFileEntry(fileEntry: any) {
       try {
-        return await new Promise((resolve, reject) => fileEntry.file(resolve, reject));
+        return await new Promise((resolve: any, reject: any) => fileEntry.file(resolve, reject));
       } catch (err) {
         console.log('Error converting a fileEntry to a File: ', err);
       }
     }
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve: any) => {
       const files: File[] = [];
 
       const dirReader = directory.createReader();
 
       // we need this to be a recursion because of this issue: https://bugs.chromium.org/p/chromium/issues/detail?id=514087
       const readEntries = () => {
-        dirReader.readEntries(async(dirItems) => {
+        dirReader.readEntries(async(dirItems: any) => {
           if (!dirItems.length) {
             resolve(files);
           } else {
-            const fileEntries = dirItems.filter((dirItem) => dirItem.isFile);
+            const fileEntries = dirItems.filter((dirItem: any) => dirItem.isFile);
 
             for (const fileEntry of fileEntries) {
               const file: any = await getFileFromFileEntry(fileEntry);
@@ -241,7 +247,7 @@ export class NgxDropzoneComponent {
     }
   }
 
-  _onFilesSelected(event) {
+  _onFilesSelected(event: any) {
     const files: FileList = event.target.files;
     this.handleFileDrop(files);
 

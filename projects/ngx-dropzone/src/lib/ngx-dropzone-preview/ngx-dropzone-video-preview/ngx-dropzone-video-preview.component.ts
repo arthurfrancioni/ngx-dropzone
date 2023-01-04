@@ -29,9 +29,9 @@ export class NgxDropzoneVideoPreviewComponent extends NgxDropzonePreviewComponen
   }
 
   /** The video data source. */
-  sanitizedVideoSrc: SafeUrl;
+  sanitizedVideoSrc!: SafeUrl;
 
-  private videoSrc: string;
+  private videoSrc!: string;
 
   ngOnInit() {
     if (!this.file) {
